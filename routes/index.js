@@ -3,14 +3,13 @@ var router = express.Router();
 var app = express();
 
 var multer = require('multer');
-var path = require('path');
 var upload = multer({
-    _storage:multer.diskStorage({
+    storage:multer.diskStorage({
         destination:function(req,file,cb){
-            cb(null,'./public/uploads');
+            cb(null,'uploads/');
         },
         filename:function(req,file,cb){
-            cb(null, new Date().valueOf() + path.extname(file.originalname));
+            cb(null, file.originalname);
         }
     })
 });
@@ -24,17 +23,25 @@ var pool = mysql.createPool({
     database:'test'
   });
 
+  /*create table imgUp(
+      imgNo int(50),
+      imgName varchar(200),
+      primary key(imgNo)
+  )*/
 
   
 router.get('/', function(req, res, next) {
    pool.getConnection(function(err,connection){
         var query = "select * from imgUp";
         connection.query(query,function(err,results){
-        res.render('index',{results:results});
+        if(results){
+            res.render('index',{results:results});
+        }else{
+            res.render('index');
+        }
         });
    });
 });
-
 
 
 router.post('/fileUp',upload.single('imgfile'),function(req,res){

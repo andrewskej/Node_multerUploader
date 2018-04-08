@@ -22,10 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-//이거 때문에!!!이미지가 안떴던 것이다!!!한줄 까먹어서 하루를 꼬박 날렸네...
-app.use("/public/uploads", express.static(__dirname + '/public/uploads'));
-
-
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
