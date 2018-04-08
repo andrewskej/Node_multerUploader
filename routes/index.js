@@ -24,7 +24,7 @@ var pool = mysql.createPool({
   });
 
   /*create table imgUp(
-      imgNo int(50),
+      imgNo int(50) auto_increment,
       imgName varchar(200),
       primary key(imgNo)
   )*/
