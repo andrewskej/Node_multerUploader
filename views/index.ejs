@@ -14,17 +14,15 @@
     </form>
 
 <%
-if(results){
-  for(var i=0;i<results.length;i++){
-    var result = results[i]; %>
-    <div>
-      <ul>
-        <img src="/uploads/<%=result.imgName%>" style="width:240px">
-        <a href="/fileDel/<%=result.imgNo%>">x</a>
-      </ul>
-    </div>
-  <%  }%>
-<%  }%>
+for(var i=0;i<results.length;i++){
+  var result = results[i]; %>
+  <div>
+    <ul>
+      <img src="/uploads/<%=result.imgName%>" style="width:240px">
+      <a href="/fileDel/<%=result.imgNo%>">x</a>
+    </ul>
+  </div>
+<% } %>
 
 </body>
 </html>
